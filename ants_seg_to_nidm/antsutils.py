@@ -71,7 +71,7 @@ def read_ants_stats(ants_stats_file, ants_brainvols_file, mri_file, force_error=
 
     # load mri_file and extract voxel sizes
     img = nib.load(mri_file)
-    vox_size = np.product(list(img.header.get_zooms()))
+    vox_size = np.prod(list(img.header.get_zooms()))
 
     with open(cde_file, "r") as fp:
         ants_cde = json.load(fp)
