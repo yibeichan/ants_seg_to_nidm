@@ -177,6 +177,12 @@
       ],
       "isAbout": "http://purl.obolibrary.org/obo/UBERON_0001359"
     },
+    "CSFVOL": {
+      "antskey": [
+        "CSFVOL"
+      ],
+      "isAbout": "http://purl.obolibrary.org/obo/UBERON_0001359"
+    },
     "Caudate": {
       "antskey": [
         "Left-Caudate",
@@ -215,6 +221,12 @@
         "Right-Cerebellum-White-Matter"
       ],
       "isAbout": "http://purl.obolibrary.org/obo/UBERON_0002317"
+    },
+    "GMVOL": {
+      "antskey": [
+        "GMVOL"
+      ],
+      "isAbout": "http://purl.obolibrary.org/obo/UBERON_0000956"
     },
     "GVol": {
       "antskey": [
@@ -276,6 +288,12 @@
         "Right-VentralDC"
       ],
       "isAbout": "CUSTOM: it was 'invented' by CMA. Something like: Ventral Diencephalon contains the hypothalamus, basal forebrain, and sublenticular extended amygdala (SLEA), as well as a large portion of ventral tegmentum. See also https://doi.org/10.1016/j.biopsych.2008.01.018"
+    },
+    "WMVOL": {
+      "antskey": [
+        "WMVOL"
+      ],
+      "isAbout": "http://purl.obolibrary.org/obo/UBERON_0002437"
     },
     "WVol": {
       "antskey": [

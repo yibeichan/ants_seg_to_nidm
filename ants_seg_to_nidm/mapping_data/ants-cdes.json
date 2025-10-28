@@ -1,5 +1,5 @@
 {
-  "count": 299,
+  "count": 302,
   "ANTSDKT(structure='Brain', hemi=None, measure='PearsonCorrelation', unit=None)": {
     "id": "000001",
     "label": "PearsonCorrelation (None)",
@@ -2466,5 +2466,29 @@
     "datumType": "http://uri.interlex.org/base/ilx_0738276",
     "hasUnit": "mm^2",
     "measureOf": "http://purl.obolibrary.org/obo/PATO_0001323"
+  },
+  "ANTSDKT(structure='CSFVOL', hemi=None, measure='Volume', unit='mm^3')": {
+    "id": "000300",
+    "label": "CSFVOL (mm^3)",
+    "isAbout": "http://purl.obolibrary.org/obo/UBERON_0001359",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='GMVOL', hemi=None, measure='Volume', unit='mm^3')": {
+    "id": "000301",
+    "label": "GMVOL (mm^3)",
+    "isAbout": "http://purl.obolibrary.org/obo/UBERON_0000956",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='WMVOL', hemi=None, measure='Volume', unit='mm^3')": {
+    "id": "000302",
+    "label": "WMVOL (mm^3)",
+    "isAbout": "http://purl.obolibrary.org/obo/UBERON_0002437",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
   }
 }

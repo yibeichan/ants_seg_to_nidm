@@ -3341,5 +3341,34 @@ ants:ants_000299 a ants:DataElement ;
     ants:structure_id 2035 ;
     ants:unit "mm^2" .
 
-ants:DataElement rdfs:subClassOf nidm:DataElement .
+ants:ants_000300 a ants:DataElement ;
+    rdfs:label "CSFVOL (mm^3)" ;
+    nidm:datumType ilx:0738276 ;
+    nidm:hasUnit "mm^3" ;
+    nidm:isAbout uberon:0001359 ;
+    nidm:measureOf ilx:0112559 ;
+    ants:measure "Volume" ;
+    ants:structure "CSFVOL" ;
+    ants:unit "mm^3" .
 
+ants:ants_000301 a ants:DataElement ;
+    rdfs:label "GMVOL (mm^3)" ;
+    nidm:datumType ilx:0738276 ;
+    nidm:hasUnit "mm^3" ;
+    nidm:isAbout uberon:0000956 ;
+    nidm:measureOf ilx:0112559 ;
+    ants:measure "Volume" ;
+    ants:structure "GMVOL" ;
+    ants:unit "mm^3" .
+
+ants:ants_000302 a ants:DataElement ;
+    rdfs:label "WMVOL (mm^3)" ;
+    nidm:datumType ilx:0738276 ;
+    nidm:hasUnit "mm^3" ;
+    nidm:isAbout uberon:0002437 ;
+    nidm:measureOf ilx:0112559 ;
+    ants:measure "Volume" ;
+    ants:structure "WMVOL" ;
+    ants:unit "mm^3" .
+
+ants:DataElement rdfs:subClassOf nidm:DataElement .

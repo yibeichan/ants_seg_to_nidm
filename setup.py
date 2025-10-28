@@ -41,7 +41,7 @@ setup(
     packages=PACKAGES,
     install_requires=[
         'numpy',
-	'pynidm',
+        'pynidm',
         'pandas',
     ], # Add requirements as necessary
     include_package_data=True,
@@ -61,4 +61,3 @@ setup(
         "Operating System :: OS Independent",
     ], # Change if necessary
 )
-
