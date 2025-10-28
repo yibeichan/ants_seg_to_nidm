@@ -3371,4 +3371,24 @@ ants:ants_000302 a ants:DataElement ;
     ants:structure "WMVOL" ;
     ants:unit "mm^3" .
 
+ants:ants_000303 a ants:DataElement ;
+    rdfs:label "Line-3 VolumeInVoxels (voxel)" ;
+    nidm:datumType ilx:0102597 ;
+    nidm:hasUnit "voxel" ;
+    nidm:measureOf ilx:0112559 ;
+    ants:measure "VolumeInVoxels" ;
+    ants:structure "Line-3" ;
+    ants:structure_id 23 ;
+    ants:unit "voxel" .
+
+ants:ants_000304 a ants:DataElement ;
+    rdfs:label "Line-3 Volume (mm^3)" ;
+    nidm:datumType ilx:0738276 ;
+    nidm:hasUnit "mm^3" ;
+    nidm:measureOf ilx:0112559 ;
+    ants:measure "Volume" ;
+    ants:structure "Line-3" ;
+    ants:structure_id 23 ;
+    ants:unit "mm^3" .
+
 ants:DataElement rdfs:subClassOf nidm:DataElement .

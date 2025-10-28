@@ -1,5 +1,5 @@
 {
-  "count": 302,
+  "count": 304,
   "ANTSDKT(structure='Brain', hemi=None, measure='PearsonCorrelation', unit=None)": {
     "id": "000001",
     "label": "PearsonCorrelation (None)",
@@ -2487,6 +2487,22 @@
     "id": "000302",
     "label": "WMVOL (mm^3)",
     "isAbout": "http://purl.obolibrary.org/obo/UBERON_0002437",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Line-3', hemi=None, measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000303",
+    "structure_id": 23,
+    "label": "Line-3 VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Line-3', hemi=None, measure='Volume', unit='mm^3')": {
+    "id": "000304",
+    "structure_id": 23,
+    "label": "Line-3 Volume (mm^3)",
     "datumType": "http://uri.interlex.org/base/ilx_0738276",
     "hasUnit": "mm^3",
     "measureOf": "http://uri.interlex.org/base/ilx_0112559"

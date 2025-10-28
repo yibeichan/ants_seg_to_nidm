@@ -255,6 +255,12 @@
       ],
       "isAbout": "http://purl.obolibrary.org/obo/UBERON_0002285"
     },
+    "Line-3": {
+      "antskey": [
+        "Line-3"
+      ],
+      "isAbout": null
+    },
     "Optic-Chiasm": {
       "antskey": [
         "Optic-Chiasm"
