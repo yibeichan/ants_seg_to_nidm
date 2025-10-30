@@ -51,7 +51,7 @@ def get_details(key, structure):
     return hemi, measure, unit
 
 
-def read_ants_stats(ants_stats_file, ants_brainvols_file, mri_file, force_error=True):
+def read_ants_stats(ants_stats_file, ants_brainvols_file, mri_file, force_error=True, collect_missing=False):
     """
     Reads in an ANTS stats file along with associated mri_file (for voxel sizes) and converts to a measures dictionary with keys:
     ['structure':XX, 'items': [{'name': 'NVoxels', 'description': 'Number of voxels','value':XX, 'units':'unitless'},
@@ -78,6 +78,7 @@ def read_ants_stats(ants_stats_file, ants_brainvols_file, mri_file, force_error=
 
     measures = []
     changed = False
+    missing_labels = []  # Collect all missing labels if collect_missing=True
     # iterate over columns in brain vols
     for key, j in brain_vols.T.iterrows():
         value = j.values[0]
@@ -92,6 +93,9 @@ def read_ants_stats(ants_stats_file, ants_brainvols_file, mri_file, force_error=
             else None,
         )
         if str(keytuple) not in ants_cde:
+            if collect_missing:
+                missing_labels.append(str(keytuple))
+                continue  # Skip this entry but continue processing
             ants_cde["count"] += 1
             ants_cde[str(keytuple)] = {
                 "id": f"{ants_cde['count']:0>6d}",
@@ -113,7 +117,10 @@ def read_ants_stats(ants_stats_file, ants_brainvols_file, mri_file, force_error=
                 segid = int(val)
                 structure = get_id_to_struct(segid)
                 if structure is None:
-                    raise ValueError(f"{int(val):d} did not return any structure")
+                    if collect_missing:
+                        print(f"Warning: Label {int(val)} not found in FreeSurferColorLUT.txt - skipping this row")
+                        break  # Skip entire row for this label
+                    raise ValueError(f"Label ID {int(val):d} did not return any structure in FreeSurferColorLUT.txt")
                 continue
             if "VolumeInVoxels" not in key and "Area" not in key:
                 continue
@@ -123,6 +130,9 @@ def read_ants_stats(ants_stats_file, ants_brainvols_file, mri_file, force_error=
             )
             label = f"{structure} {measure} ({unit})"
             if str(key_tuple) not in ants_cde:
+                if collect_missing:
+                    missing_labels.append(str(key_tuple))
+                    continue  # Skip this entry but continue processing
                 ants_cde["count"] += 1
                 ants_cde[str(key_tuple)] = {
                     "id": f"{ants_cde['count']:0>6d}",
@@ -144,6 +154,9 @@ def read_ants_stats(ants_stats_file, ants_brainvols_file, mri_file, force_error=
                 )
                 label = f"{structure} {measure} ({unit})"
                 if str(key_tuple) not in ants_cde:
+                    if collect_missing:
+                        missing_labels.append(str(key_tuple))
+                        continue  # Skip this entry but continue processing
                     ants_cde["count"] += 1
                     ants_cde[str(key_tuple)] = {
                         "id": f"{ants_cde['count']:0>6d}",
@@ -162,6 +175,16 @@ def read_ants_stats(ants_stats_file, ants_brainvols_file, mri_file, force_error=
     if changed:
         with open(cde_file, "w") as fp:
             json.dump(ants_cde, fp, indent=2)
+
+    # Report all missing labels if we were collecting them
+    if collect_missing and missing_labels:
+        print(f"\n{'='*70}")
+        print(f"FOUND {len(missing_labels)} MISSING LABEL(S):")
+        print(f"{'='*70}")
+        for label in sorted(set(missing_labels)):
+            print(f"  {label}")
+        print(f"{'='*70}\n")
+        raise ValueError(f"Found {len(missing_labels)} missing label(s) - see list above")
 
     return measures
 

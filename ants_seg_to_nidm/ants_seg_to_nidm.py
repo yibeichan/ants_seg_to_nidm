@@ -270,6 +270,9 @@ def main():
     parser.add_argument('-forcenidm','--forcenidm', action='store_true',required=False,
                         help='If adding to NIDM file this parameter forces the data to be added even if the participant'
                              'doesnt currently exist in the NIDM file.')
+    parser.add_argument('--collect-missing', action='store_true', required=False,
+                        help='Collect and report all missing labels instead of stopping at the first error. '
+                             'Useful for identifying all labels that need to be filtered in wrapper.py.')
     args = parser.parse_args()
 
     # test whether user supplied stats file directly and if so they the subject id must also be supplied so we
@@ -348,7 +351,9 @@ def main():
         imagefile=file_list[2]
 
 
-    measures = read_ants_stats(labelstats,brainvol,imagefile)
+    measures = read_ants_stats(labelstats, brainvol, imagefile, 
+                               force_error=not args.collect_missing,
+                               collect_missing=args.collect_missing)
     [e,doc] = convert_stats_to_nidm(measures)
     g = create_cde_graph()
 
