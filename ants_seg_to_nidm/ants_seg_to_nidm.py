@@ -155,6 +155,8 @@ def add_seg_data(nidmdoc,subjid,stats_entity_id, add_to_nidm=False, forceagent=F
             qres = nidmdoc.query(query)
             if len(qres) == 0:
                 print('Subject ID (%s) was not found in existing NIDM file...' %subjid)
+                # Initialize qres2 to empty result set
+                qres2 = []
                 ##############################################################################
                 # added to account for issues with some BIDS datasets that have leading 00's in subject directories
                 # but not in participants.tsv files.
@@ -182,12 +184,12 @@ def add_seg_data(nidmdoc,subjid,stats_entity_id, add_to_nidm=False, forceagent=F
                             print('Found subject ID after stripping zeros: %s in NIDM file (agent: %s)' %(subjid.lstrip('0'),row[0]))
                             participant_agent = row[0]
                 #######################################################################################
-                if (forceagent is not False) and (qres2==0):
+                if (forceagent is not False) and (len(qres2)==0):
                     print('Explicitly creating agent in existing NIDM file...')
                     participant_agent = niiri[getUUID()]
                     nidmdoc.add((participant_agent,RDF.type,Constants.PROV['Agent']))
                     nidmdoc.add((participant_agent,URIRef(Constants.NIDM_SUBJECTID.uri),Literal(subjid, datatype=XSD.string)))
-                elif (forceagent is False) and (qres==0) and (qres2==0):
+                elif (forceagent is False) and (len(qres)==0) and (len(qres2)==0):
                     print('Not explicitly adding agent to NIDM file, no output written')
                     exit()
             else:
