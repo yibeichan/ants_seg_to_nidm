@@ -158,9 +158,32 @@ def add_seg_data(nidmdoc,subjid,stats_entity_id, add_to_nidm=False, forceagent=F
                 # Initialize qres2 to empty result set
                 qres2 = []
                 ##############################################################################
-                # added to account for issues with some BIDS datasets that have leading 00's in subject directories
-                # but not in participants.tsv files.
-                if (len(subjid) - len(subjid.lstrip('0'))) != 0:
+                # Try stripping 'sub-' prefix (common in BIDS)
+                subjid_stripped = subjid
+                if subjid.startswith('sub-'):
+                    subjid_stripped = subjid[4:]  # Remove 'sub-' prefix
+                    print('Trying to find subject ID without "sub-" prefix: %s....' % subjid_stripped)
+                    query = """
+                        PREFIX ndar:<https://ndar.nih.gov/api/datadictionary/v2/dataelement/>
+                        PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                        PREFIX prov:<http://www.w3.org/ns/prov#>
+                        PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+                        select distinct ?agent
+                        where {
+
+                            ?agent rdf:type prov:Agent ;
+                            ndar:src_subject_id \"%s\"^^xsd:string .
+
+                        }""" % subjid_stripped
+                    qres2 = nidmdoc.query(query)
+                    if len(qres2) > 0:
+                        for row in qres2:
+                            print('Found subject ID after stripping "sub-" prefix: %s in NIDM file (agent: %s)' %(subjid_stripped,row[0]))
+                            participant_agent = row[0]
+                
+                # Try stripping leading zeros if still not found
+                if len(qres2) == 0 and (len(subjid_stripped) - len(subjid_stripped.lstrip('0'))) != 0:
                     print('Trying to find subject ID without leading zeros....')
                     query = """
                         PREFIX ndar:<https://ndar.nih.gov/api/datadictionary/v2/dataelement/>
@@ -174,14 +197,14 @@ def add_seg_data(nidmdoc,subjid,stats_entity_id, add_to_nidm=False, forceagent=F
                             ?agent rdf:type prov:Agent ;
                             ndar:src_subject_id \"%s\"^^xsd:string .
 
-                        }""" % subjid.lstrip('0')
+                        }""" % subjid_stripped.lstrip('0')
                     #print(query)
                     qres2 = nidmdoc.query(query)
                     if len(qres2) == 0:
                         print("Still can't find subject id after stripping leading zeros...")
                     else:
                         for row in qres2:
-                            print('Found subject ID after stripping zeros: %s in NIDM file (agent: %s)' %(subjid.lstrip('0'),row[0]))
+                            print('Found subject ID after stripping zeros: %s in NIDM file (agent: %s)' %(subjid_stripped.lstrip('0'),row[0]))
                             participant_agent = row[0]
                 #######################################################################################
                 if (forceagent is not False) and (len(qres2)==0):
@@ -421,9 +444,9 @@ def main():
         #serialize NIDM file
         print("Writing Augmented NIDM file...")
         if args.jsonld is not False:
-            nidmdoc.serialize(destination=args.nidm_file + '.json',format='jsonld')
+            nidmdoc.serialize(destination=args.output_dir,format='jsonld')
         else:
-            nidmdoc.serialize(destination=args.nidm_file,format='turtle')
+            nidmdoc.serialize(destination=args.output_dir,format='turtle')
 
         if args.add_de is None:
             # serialize cde graph

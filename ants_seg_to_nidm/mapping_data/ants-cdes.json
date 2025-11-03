@@ -1,5 +1,5 @@
 {
-  "count": 345,
+  "count": 347,
   "ANTSDKT(structure='Brain', hemi=None, measure='PearsonCorrelation', unit=None)": {
     "id": "000001",
     "label": "PearsonCorrelation (None)",
@@ -2418,6 +2418,22 @@
     "datumType": "http://uri.interlex.org/base/ilx_0738276",
     "hasUnit": "mm^2",
     "measureOf": "http://purl.obolibrary.org/obo/PATO_0001323"
+  },
+  "ANTSDKT(structure='ctx-rh-temporalpole', hemi='Right', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000346",
+    "structure_id": 2033,
+    "label": "ctx-rh-temporalpole VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='ctx-rh-temporalpole', hemi='Right', measure='Volume', unit='mm^3')": {
+    "id": "000347",
+    "structure_id": 2033,
+    "label": "ctx-rh-temporalpole Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
   },
   "ANTSDKT(structure='ctx-rh-transversetemporal', hemi='Right', measure='VolumeInVoxels', unit='voxel')": {
     "id": "000294",
