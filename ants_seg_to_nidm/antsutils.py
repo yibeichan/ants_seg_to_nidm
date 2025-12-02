@@ -118,7 +118,7 @@ def read_ants_stats(ants_stats_file, ants_brainvols_file, mri_file, force_error=
                 structure = get_id_to_struct(segid)
                 if structure is None:
                     if collect_missing:
-                        print(f"Warning: Label {int(val)} not found in FreeSurferColorLUT.txt - skipping this row")
+                        print(f"Warning: Label {int(val)} not found in FreeSurferColorLUT.txt - skipping this row", file=sys.stderr)
                         break  # Skip entire row for this label
                     raise ValueError(f"Label ID {int(val):d} did not return any structure in FreeSurferColorLUT.txt")
                 continue
