@@ -178,13 +178,15 @@ def read_ants_stats(ants_stats_file, ants_brainvols_file, mri_file, force_error=
 
     # Report all missing labels if we were collecting them
     if collect_missing and missing_labels:
-        print(f"\n{'='*70}")
-        print(f"FOUND {len(missing_labels)} MISSING LABEL(S):")
-        print(f"{'='*70}")
-        for label in sorted(set(missing_labels)):
-            print(f"  {label}")
-        print(f"{'='*70}\n")
-        raise ValueError(f"Found {len(missing_labels)} missing label(s) - see list above")
+        unique_missing_labels = sorted(set(missing_labels))
+        num_missing = len(unique_missing_labels)
+        print(f"\n{'='*70}", file=sys.stderr)
+        print(f"FOUND {num_missing} MISSING LABEL(S):", file=sys.stderr)
+        print(f"{'='*70}", file=sys.stderr)
+        for label in unique_missing_labels:
+            print(f"  {label}", file=sys.stderr)
+        print(f"{'='*70}\n", file=sys.stderr)
+        raise ValueError(f"Found {num_missing} missing label(s) - see list above")
 
     return measures
 
