@@ -244,7 +244,7 @@ def add_seg_data(nidmdoc,subjid,stats_entity_id, add_to_nidm=False, forceagent=F
         )
         if not results:
             warnings.warn(
-                f"No T1-weighted AcquisitionObject found for subject {subjid}"
+                f"No anatomical MRI AcquisitionObject found for subject {subjid}"
             )
             acquisition_obj = None
         else:
