@@ -1,5 +1,5 @@
 {
-  "count": 299,
+  "count": 347,
   "ANTSDKT(structure='Brain', hemi=None, measure='PearsonCorrelation', unit=None)": {
     "id": "000001",
     "label": "PearsonCorrelation (None)",
@@ -13,17 +13,17 @@
     "hasUnit": "mm^3",
     "measureOf": "http://uri.interlex.org/base/ilx_0112559"
   },
-  "ANTSDKT(structure='GVol', hemi=None, measure='Volume', unit='mm^3')": {
+  "ANTSDKT(structure='GMVOL', hemi=None, measure='Volume', unit='mm^3')": {
     "id": "000003",
-    "label": "GVol (mm^3)",
+    "label": "GMVOL (mm^3)",
     "isAbout": "http://purl.obolibrary.org/obo/UBERON_0000956",
     "datumType": "http://uri.interlex.org/base/ilx_0738276",
     "hasUnit": "mm^3",
     "measureOf": "http://uri.interlex.org/base/ilx_0112559"
   },
-  "ANTSDKT(structure='WVol', hemi=None, measure='Volume', unit='mm^3')": {
+  "ANTSDKT(structure='WMVOL', hemi=None, measure='Volume', unit='mm^3')": {
     "id": "000004",
-    "label": "WVol (mm^3)",
+    "label": "WMVOL (mm^3)",
     "isAbout": "http://purl.obolibrary.org/obo/UBERON_0002437",
     "datumType": "http://uri.interlex.org/base/ilx_0738276",
     "hasUnit": "mm^3",
@@ -391,10 +391,10 @@
     "hasUnit": "voxel",
     "measureOf": "http://uri.interlex.org/base/ilx_0112559"
   },
-  "ANTSDKT(structure='CSF', hemi=None, measure='Volume', unit='mm^3')": {
+  "ANTSDKT(structure='CSFVOL', hemi=None, measure='Volume', unit='mm^3')": {
     "id": "000046",
     "structure_id": 24,
-    "label": "CSF Volume (mm^3)",
+    "label": "CSFVOL (mm^3)",
     "isAbout": "http://purl.obolibrary.org/obo/UBERON_0001359",
     "datumType": "http://uri.interlex.org/base/ilx_0738276",
     "hasUnit": "mm^3",
@@ -2419,6 +2419,22 @@
     "hasUnit": "mm^2",
     "measureOf": "http://purl.obolibrary.org/obo/PATO_0001323"
   },
+  "ANTSDKT(structure='ctx-rh-temporalpole', hemi='Right', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000346",
+    "structure_id": 2033,
+    "label": "ctx-rh-temporalpole VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='ctx-rh-temporalpole', hemi='Right', measure='Volume', unit='mm^3')": {
+    "id": "000347",
+    "structure_id": 2033,
+    "label": "ctx-rh-temporalpole Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
   "ANTSDKT(structure='ctx-rh-transversetemporal', hemi='Right', measure='VolumeInVoxels', unit='voxel')": {
     "id": "000294",
     "structure_id": 2034,
@@ -2466,5 +2482,389 @@
     "datumType": "http://uri.interlex.org/base/ilx_0738276",
     "hasUnit": "mm^2",
     "measureOf": "http://purl.obolibrary.org/obo/PATO_0001323"
+  },
+  "ANTSDKT(structure='5th-Ventricle', hemi=None, measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000300",
+    "structure_id": 72,
+    "label": "5th-Ventricle VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559",
+    "isAbout": "http://purl.obolibrary.org/obo/UBERON_0004682"
+  },
+  "ANTSDKT(structure='5th-Ventricle', hemi=None, measure='Volume', unit='mm^3')": {
+    "id": "000301",
+    "structure_id": 72,
+    "label": "5th-Ventricle Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559",
+    "isAbout": "http://purl.obolibrary.org/obo/UBERON_0004682"
+  },
+  "ANTSDKT(structure='Left-choroid-plexus', hemi='Left', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000302",
+    "structure_id": 31,
+    "label": "Left-choroid-plexus VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559",
+    "isAbout": "http://purl.obolibrary.org/obo/UBERON_0001886"
+  },
+  "ANTSDKT(structure='Left-choroid-plexus', hemi='Left', measure='Volume', unit='mm^3')": {
+    "id": "000303",
+    "structure_id": 31,
+    "label": "Left-choroid-plexus Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559",
+    "isAbout": "http://purl.obolibrary.org/obo/UBERON_0001886"
+  },
+  "ANTSDKT(structure='Right-choroid-plexus', hemi='Right', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000304",
+    "structure_id": 63,
+    "label": "Right-choroid-plexus VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559",
+    "isAbout": "http://purl.obolibrary.org/obo/UBERON_0001886"
+  },
+  "ANTSDKT(structure='Right-choroid-plexus', hemi='Right', measure='Volume', unit='mm^3')": {
+    "id": "000305",
+    "structure_id": 63,
+    "label": "Right-choroid-plexus Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559",
+    "isAbout": "http://purl.obolibrary.org/obo/UBERON_0001886"
+  },
+  "ANTSDKT(structure='Right-Thalamus', hemi='Right', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000306",
+    "structure_id": 48,
+    "label": "Right-Thalamus VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559",
+    "isAbout": "http://purl.obolibrary.org/obo/UBERON_0001897"
+  },
+  "ANTSDKT(structure='Right-Thalamus', hemi='Right', measure='Volume', unit='mm^3')": {
+    "id": "000307",
+    "structure_id": 48,
+    "label": "Right-Thalamus Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559",
+    "isAbout": "http://purl.obolibrary.org/obo/UBERON_0001897"
+  },
+  "ANTSDKT(structure='Right-Substancia-Nigra', hemi='Right', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000308",
+    "structure_id": 71,
+    "label": "Right-Substancia-Nigra VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559",
+    "isAbout": "http://purl.obolibrary.org/obo/UBERON_0002038"
+  },
+  "ANTSDKT(structure='Right-Substancia-Nigra', hemi='Right', measure='Volume', unit='mm^3')": {
+    "id": "000309",
+    "structure_id": 71,
+    "label": "Right-Substancia-Nigra Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559",
+    "isAbout": "http://purl.obolibrary.org/obo/UBERON_0002038"
+  },
+  "ANTSDKT(structure='Right-Cerebellum-Cortex', hemi='Right', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000310",
+    "structure_id": 8,
+    "label": "Right-Cerebellum-Cortex VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559",
+    "isAbout": "http://purl.obolibrary.org/obo/UBERON_0002129"
+  },
+  "ANTSDKT(structure='Right-Cerebellum-Cortex', hemi='Right', measure='Volume', unit='mm^3')": {
+    "id": "000311",
+    "structure_id": 8,
+    "label": "Right-Cerebellum-Cortex Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559",
+    "isAbout": "http://purl.obolibrary.org/obo/UBERON_0002129"
+  },
+  "ANTSDKT(structure='Right-Cerebral-Exterior', hemi='Right', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000312",
+    "structure_id": 24,
+    "label": "Right-Cerebral-Exterior VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Right-Cerebral-Exterior', hemi='Right', measure='Volume', unit='mm^3')": {
+    "id": "000313",
+    "structure_id": 24,
+    "label": "Right-Cerebral-Exterior Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Right-Cerebral-White-Matter', hemi='Right', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000314",
+    "structure_id": 41,
+    "label": "Right-Cerebral-White-Matter VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559",
+    "isAbout": "http://purl.obolibrary.org/obo/UBERON_0002437"
+  },
+  "ANTSDKT(structure='Right-Cerebral-White-Matter', hemi='Right', measure='Volume', unit='mm^3')": {
+    "id": "000315",
+    "structure_id": 41,
+    "label": "Right-Cerebral-White-Matter Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559",
+    "isAbout": "http://purl.obolibrary.org/obo/UBERON_0002437"
+  },
+  "ANTSDKT(structure='Right-Insula', hemi='Right', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000316",
+    "structure_id": 47,
+    "label": "Right-Insula VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559",
+    "isAbout": "http://purl.obolibrary.org/obo/UBERON_0002012"
+  },
+  "ANTSDKT(structure='Right-Insula', hemi='Right', measure='Volume', unit='mm^3')": {
+    "id": "000317",
+    "structure_id": 47,
+    "label": "Right-Insula Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559",
+    "isAbout": "http://purl.obolibrary.org/obo/UBERON_0002012"
+  },
+  "ANTSDKT(structure='Right-Operculum', hemi='Right', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000318",
+    "structure_id": 65,
+    "label": "Right-Operculum VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Right-Operculum', hemi='Right', measure='Volume', unit='mm^3')": {
+    "id": "000319",
+    "structure_id": 65,
+    "label": "Right-Operculum Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Left-Aorg', hemi='Left', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000320",
+    "structure_id": 11132,
+    "label": "Left-Aorg VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Left-Aorg', hemi='Left', measure='Volume', unit='mm^3')": {
+    "id": "000321",
+    "structure_id": 11132,
+    "label": "Left-Aorg Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Right-Aorg', hemi='Right', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000322",
+    "structure_id": 12132,
+    "label": "Right-Aorg VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Right-Aorg', hemi='Right', measure='Volume', unit='mm^3')": {
+    "id": "000323",
+    "structure_id": 12132,
+    "label": "Right-Aorg Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Left-F3orb', hemi='Left', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000324",
+    "structure_id": 11136,
+    "label": "Left-F3orb VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Left-F3orb', hemi='Left', measure='Volume', unit='mm^3')": {
+    "id": "000325",
+    "structure_id": 11136,
+    "label": "Left-F3orb Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Right-F3orb', hemi='Right', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000326",
+    "structure_id": 12136,
+    "label": "Right-F3orb VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Right-F3orb', hemi='Right', measure='Volume', unit='mm^3')": {
+    "id": "000327",
+    "structure_id": 12136,
+    "label": "Right-F3orb Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Left-Porg', hemi='Left', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000328",
+    "structure_id": 11133,
+    "label": "Left-Porg VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Left-Porg', hemi='Left', measure='Volume', unit='mm^3')": {
+    "id": "000329",
+    "structure_id": 11133,
+    "label": "Left-Porg Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Left-mOg', hemi='Left', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000330",
+    "structure_id": 11139,
+    "label": "Left-mOg VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Left-mOg', hemi='Left', measure='Volume', unit='mm^3')": {
+    "id": "000331",
+    "structure_id": 11139,
+    "label": "Left-mOg Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Left-pOg', hemi='Left', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000332",
+    "structure_id": 11140,
+    "label": "Left-pOg VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Left-pOg', hemi='Left', measure='Volume', unit='mm^3')": {
+    "id": "000333",
+    "structure_id": 11140,
+    "label": "Left-pOg Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Left-Interior', hemi='Left', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000334",
+    "structure_id": 11146,
+    "label": "Left-Interior VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Left-Interior', hemi='Left', measure='Volume', unit='mm^3')": {
+    "id": "000335",
+    "structure_id": 11146,
+    "label": "Left-Interior Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Right-Interior', hemi='Right', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000336",
+    "structure_id": 12146,
+    "label": "Right-Interior VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Right-Interior', hemi='Right', measure='Volume', unit='mm^3')": {
+    "id": "000337",
+    "structure_id": 12146,
+    "label": "Right-Interior Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Left-Stellate', hemi='Left', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000338",
+    "structure_id": 11147,
+    "label": "Left-Stellate VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Left-Stellate', hemi='Left', measure='Volume', unit='mm^3')": {
+    "id": "000339",
+    "structure_id": 11147,
+    "label": "Left-Stellate Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Right-Stellate', hemi='Right', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000340",
+    "structure_id": 12147,
+    "label": "Right-Stellate VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Right-Stellate', hemi='Right', measure='Volume', unit='mm^3')": {
+    "id": "000341",
+    "structure_id": 12147,
+    "label": "Right-Stellate Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Right-Lesion', hemi='Right', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000342",
+    "structure_id": 77,
+    "label": "Right-Lesion VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Right-Lesion', hemi='Right', measure='Volume', unit='mm^3')": {
+    "id": "000343",
+    "structure_id": 77,
+    "label": "Right-Lesion Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Right-undetermined', hemi='Right', measure='VolumeInVoxels', unit='voxel')": {
+    "id": "000344",
+    "structure_id": 80,
+    "label": "Right-undetermined VolumeInVoxels (voxel)",
+    "datumType": "http://uri.interlex.org/base/ilx_0102597",
+    "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='Right-undetermined', hemi='Right', measure='Volume', unit='mm^3')": {
+    "id": "000345",
+    "structure_id": 80,
+    "label": "Right-undetermined Volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
   }
 }
