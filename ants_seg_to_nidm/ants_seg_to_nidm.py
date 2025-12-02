@@ -55,10 +55,12 @@ import urllib.request as ur
 from urllib.parse import urlparse
 import re
 import pandas as pd
+import warnings
 
 from pathlib import Path
 
 from rdflib import Graph, RDF, URIRef, util, term,Namespace,Literal,BNode,XSD
+from rdflib.plugins.sparql import prepareQuery
 from ants_seg_to_nidm.antsutils import read_ants_stats, create_cde_graph, convert_stats_to_nidm
 from io import StringIO
 
@@ -219,6 +221,40 @@ def add_seg_data(nidmdoc,subjid,stats_entity_id, add_to_nidm=False, forceagent=F
                  for row in qres:
                     print('Found subject ID: %s in NIDM file (agent: %s)' %(subjid,row[0]))
                     participant_agent = row[0]
+
+
+    if add_to_nidm:
+        query_acq = prepareQuery(
+            """
+            PREFIX prov: <http://www.w3.org/ns/prov#>
+            PREFIX nidm: <http://purl.org/nidash/nidm#>
+            SELECT DISTINCT ?acqObj
+            WHERE {
+                ?acqObj a nidm:AcquisitionObject ;
+                        prov:wasGeneratedBy/prov:qualifiedAssociation/prov:agent ?subject ;
+                        nidm:hadAcquisitionModality nidm:MagneticResonanceImaging ;
+                        nidm:hadImageUsageType nidm:Anatomical .
+            }
+            """
+        )
+        results = list(
+            nidmdoc.query(query_acq, initBindings={'subject': participant_agent})
+        )
+        if not results:
+            warnings.warn(
+                f"No anatomical MRI AcquisitionObject found for subject {subjid}"
+            )
+            acquisition_obj = None
+        else:
+            candidates = sorted({row.acqObj for row in results}, key=str)
+            if len(candidates) > 1:
+                warnings.warn(
+                    f"Multiple anatomical AcquisitionObjects found for subject {subjid}; using {candidates[0]}"
+                )
+            acquisition_obj = candidates[0]
+
+        if acquisition_obj:
+            nidmdoc.add((software_activity, Constants.PROV['used'], acquisition_obj))
 
     #create a blank node and qualified association with prov:Agent for participant
     association_bnode = BNode()
