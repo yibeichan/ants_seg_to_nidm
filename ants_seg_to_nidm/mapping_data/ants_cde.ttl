@@ -24,23 +24,23 @@ ants:ants_000002 a ants:DataElement ;
     ants:unit "mm^3" .
 
 ants:ants_000003 a ants:DataElement ;
-    rdfs:label "GVol (mm^3)" ;
+    rdfs:label "GMVOL (mm^3)" ;
     nidm:datumType ilx:0738276 ;
     nidm:hasUnit "mm^3" ;
     nidm:isAbout uberon:0000956 ;
     nidm:measureOf ilx:0112559 ;
     ants:measure "Volume" ;
-    ants:structure "GVol" ;
+    ants:structure "GMVOL" ;
     ants:unit "mm^3" .
 
 ants:ants_000004 a ants:DataElement ;
-    rdfs:label "WVol (mm^3)" ;
+    rdfs:label "WMVOL (mm^3)" ;
     nidm:datumType ilx:0738276 ;
     nidm:hasUnit "mm^3" ;
     nidm:isAbout uberon:0002437 ;
     nidm:measureOf ilx:0112559 ;
     ants:measure "Volume" ;
-    ants:structure "WVol" ;
+    ants:structure "WMVOL" ;
     ants:unit "mm^3" .
 
 ants:ants_000005 a ants:DataElement ;
@@ -518,13 +518,13 @@ ants:ants_000045 a ants:DataElement ;
     ants:unit "voxel" .
 
 ants:ants_000046 a ants:DataElement ;
-    rdfs:label "CSF Volume (mm^3)" ;
+    rdfs:label "CSFVOL (mm^3)" ;
     nidm:datumType ilx:0738276 ;
     nidm:hasUnit "mm^3" ;
     nidm:isAbout uberon:0001359 ;
     nidm:measureOf ilx:0112559 ;
     ants:measure "Volume" ;
-    ants:structure "CSF" ;
+    ants:structure "CSFVOL" ;
     ants:structure_id 24 ;
     ants:unit "mm^3" .
 
