@@ -77,7 +77,7 @@ def test_add_seg_data_links_to_matching_acquisition():
 def test_add_seg_data_warns_when_acquisition_missing():
     graph, _participant_agent = _build_base_graph()
 
-    with pytest.warns(UserWarning, match="No T1-weighted AcquisitionObject"):
+    with pytest.warns(UserWarning, match="No anatomical MRI AcquisitionObject"):
         add_seg_data(
             graph,
             SUBJECT_ID,

@@ -1,6 +1,6 @@
--e git+https://github.com/incf-nidash/PyNIDM.git#egg=PyNIDM
+pynidm==4.2.4
 pandas
 numpy
 prov
-rdflib
+rdflib>=6.0
 xlrd

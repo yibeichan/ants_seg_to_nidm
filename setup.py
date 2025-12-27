@@ -41,8 +41,9 @@ setup(
     packages=PACKAGES,
     install_requires=[
         'numpy',
-	'pynidm',
+        'pynidm==4.2.4',
         'pandas',
+        'rdflib>=6.0',
     ], # Add requirements as necessary
     include_package_data=True,
     extras_require={
@@ -61,4 +62,3 @@ setup(
         "Operating System :: OS Independent",
     ], # Change if necessary
 )
-
