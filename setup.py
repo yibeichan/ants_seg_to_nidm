@@ -41,8 +41,8 @@ setup(
     packages=PACKAGES,
     install_requires=[
         'numpy',
-        # Kept in lockstep with requirements.txt and with the consuming BIDSapp's
-        # top-level requirements.txt. The old 'pynidm==4.2.4' here made pip warn
+        # Kept in lockstep with the consuming BIDSapp's top-level
+        # requirements.txt. The old 'pynidm==4.2.4' here made pip warn
         # ("ants-seg-to-nidm 0.0.1 requires pynidm==4.2.4, but you have pynidm
         # 4.5.0") on every container build and would have pulled 4.2.4 back in
         # for anyone installing this package on its own.
@@ -51,7 +51,15 @@ setup(
         # prov 3.0.0 moved NetworkX graph interop to an optional extra that
         # nidm.experiment imports; without it importing this package fails.
         'prov[graph]',
-        'rdflib>=7.0.0,<8',
+        # Deliberately loose, and it must stay that way: pynidm 4.5.0 declares
+        # rdflib~=6.3.2, so pinning rdflib>=7 *here* makes this package's own
+        # metadata self-contradictory and `pip install -e .` dies with
+        # ResolutionImpossible. The runtime actually wants rdflib 7.x (oxrdflib
+        # needs <8), and the consuming container gets there with an explicit
+        # `pip install --upgrade 'rdflib>=7.0.0,<8'` step *after* this install --
+        # a deliberate override, which pip reports as a warning rather than an
+        # error. Same arrangement as the sibling freesurfer app's segstats_jsonld.
+        'rdflib>=6.0',
     ], # Add requirements as necessary
     include_package_data=True,
     extras_require={

@@ -6,5 +6,8 @@ pynidm==4.5.0
 pandas
 numpy
 prov[graph]
-rdflib>=7.0.0,<8
+# Loose on purpose -- see the note in setup.py. pynidm 4.5.0 declares
+# rdflib~=6.3.2, so pinning >=7 here contradicts it; the container upgrades
+# rdflib to 7.x as an explicit step after installing this package.
+rdflib>=6.0
 xlrd
