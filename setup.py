@@ -41,9 +41,17 @@ setup(
     packages=PACKAGES,
     install_requires=[
         'numpy',
-        'pynidm==4.2.4',
+        # Kept in lockstep with requirements.txt and with the consuming BIDSapp's
+        # top-level requirements.txt. The old 'pynidm==4.2.4' here made pip warn
+        # ("ants-seg-to-nidm 0.0.1 requires pynidm==4.2.4, but you have pynidm
+        # 4.5.0") on every container build and would have pulled 4.2.4 back in
+        # for anyone installing this package on its own.
+        'pynidm==4.5.0',
         'pandas',
-        'rdflib>=6.0',
+        # prov 3.0.0 moved NetworkX graph interop to an optional extra that
+        # nidm.experiment imports; without it importing this package fails.
+        'prov[graph]',
+        'rdflib>=7.0.0,<8',
     ], # Add requirements as necessary
     include_package_data=True,
     extras_require={
