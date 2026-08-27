@@ -1,5 +1,5 @@
 {
-  "count": 347,
+  "count": 348,
   "ANTSDKT(structure='Brain', hemi=None, measure='PearsonCorrelation', unit=None)": {
     "id": "000001",
     "label": "PearsonCorrelation (None)",
@@ -389,6 +389,15 @@
     "isAbout": "http://purl.obolibrary.org/obo/UBERON_0001359",
     "datumType": "http://uri.interlex.org/base/ilx_0102597",
     "hasUnit": "voxel",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
+  },
+  "ANTSDKT(structure='CSF', hemi=None, measure='Volume', unit='mm^3')": {
+    "id": "000348",
+    "structure_id": 24,
+    "label": "CSF Volume (mm^3)",
+    "isAbout": "http://purl.obolibrary.org/obo/UBERON_0001359",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
     "measureOf": "http://uri.interlex.org/base/ilx_0112559"
   },
   "ANTSDKT(structure='CSFVOL', hemi=None, measure='Volume', unit='mm^3')": {

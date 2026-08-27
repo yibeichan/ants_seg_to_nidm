@@ -5,6 +5,7 @@
 
 import json
 import os
+import sys
 from collections import namedtuple
 from pathlib import Path
 import rdflib as rl
