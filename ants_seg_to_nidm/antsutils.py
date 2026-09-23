@@ -18,24 +18,113 @@ ANTSDKT = namedtuple("ANTSDKT", ["structure", "hemi", "measure", "unit"])
 cde_file = Path(os.path.dirname(__file__)) / "mapping_data" / "ants-cdes.json"
 map_file = Path(os.path.dirname(__file__)) / "mapping_data" / "antsmap.json"
 lut_file = Path(os.path.dirname(__file__)) / "mapping_data" / "FreeSurferColorLUT.txt"
+neuromorphometrics_file = (
+    Path(os.path.dirname(__file__)) / "mapping_data" / "neuromorphometrics_labels.json"
+)
+
+#: Segmentation label protocols this converter can name.
+#:
+#: ANTs segmentations do not all speak FreeSurfer. The ants_bidsapp's
+#: ``--method quick`` warps a template map numbered in FreeSurfer aseg ids,
+#: while ``--method fusion`` votes over the OASIS-TRT-20 ``DKT31_CMA`` atlases,
+#: whose *subcortical* ids follow the Neuromorphometrics / BrainCOLOR protocol
+#: distributed with the MICCAI 2012 Multi-Atlas Labelling Challenge. Both
+#: occupy the same small-integer range, so naming one with the other's table
+#: produces a well-formed file full of wrong structures -- the right thalamus
+#: reported as ``Right-Substancia-Nigra``, cerebellar white matter as
+#: ``Right-Cerebral-White-Matter``, and a dozen names that denote nothing a
+#: brain contains (``Left-Porg``, ``Right-Stellate``, ``Right-undetermined``).
+#: Naming therefore has to be told which protocol it is reading.
+FREESURFER = "freesurfer"
+NEUROMORPHOMETRICS = "neuromorphometrics"
+LABEL_PROTOCOLS = (FREESURFER, NEUROMORPHOMETRICS)
+
+#: Cortical DKT ids are identical in both protocols, so in Neuromorphometrics
+#: mode anything at or above this floor is resolved from the FreeSurfer table.
+#: Below it, an id absent from the Neuromorphometrics table stays unnamed
+#: rather than falling through -- falling through is exactly the bug.
+_CORTICAL_ID_FLOOR = 1000
+
+#: Structures the FreeSurfer LUT does not carry a line for.
+_UNLISTED = {
+    91: "Left basal forebrain",
+    92: "Right basal forebrain",
+    630: "Cerebellar vermal lobules I - V",
+    631: "Cerebellar vermal lobules VI - VII",
+    632: "Cerebellar vermal lobules VIII - X",
+}
+
+_lut_cache = None
+_neuromorphometrics_cache = None
 
 
-def get_id_to_struct(id):
-    with open(lut_file, "r") as fp:
-        for line in fp.readlines():
-            if line.startswith(str(id)):
-                return line.split()[1]
-    if id == 91:
-        return "Left basal forebrain"
-    if id == 92:
-        return "Right basal forebrain"
-    if id == 630:
-        return "Cerebellar vermal lobules I - V"
-    if id == 631:
-        return "Cerebellar vermal lobules VI - VII"
-    if id == 632:
-        return "Cerebellar vermal lobules VIII - X"
-    return None
+def _freesurfer_lut():
+    """id -> structure name, parsed once.
+
+    The previous implementation scanned the file with
+    ``line.startswith(str(id))``, which is a prefix match: an id with no line
+    of its own could silently pick up a longer id's name. It happened not to
+    misfire on any id these segmentations emit, but a lookup that can invent a
+    plausible wrong answer is the same failure mode this module now exists to
+    prevent, so the match is exact.
+    """
+    global _lut_cache
+    if _lut_cache is None:
+        table = {}
+        with open(lut_file, "r") as fp:
+            for line in fp:
+                parts = line.split()
+                if parts and parts[0].isdigit():
+                    table.setdefault(int(parts[0]), parts[1])
+        _lut_cache = table
+    return _lut_cache
+
+
+def _neuromorphometrics_labels():
+    """Neuromorphometrics / BrainCOLOR subcortical id -> structure name.
+
+    The names are deliberately the FreeSurfer spellings of the same
+    structures, so a given structure keys into the same ``ants-cdes.json``
+    entry whichever protocol produced it, rather than minting a duplicate CDE
+    per protocol.
+    """
+    global _neuromorphometrics_cache
+    if _neuromorphometrics_cache is None:
+        with open(neuromorphometrics_file, "r") as fp:
+            _neuromorphometrics_cache = {int(k): v for k, v in json.load(fp).items()}
+    return _neuromorphometrics_cache
+
+
+def get_id_to_struct(id, protocol=FREESURFER):
+    """Resolve a segmentation label id to a structure name.
+
+    Parameters
+    ----------
+    id : int
+        Label id as it appears in the first column of the ANTs label stats.
+    protocol : str
+        ``"freesurfer"`` (the default, and what every caller before 2026-09-23
+        got) or ``"neuromorphometrics"``.
+
+    Returns
+    -------
+    str or None
+        ``None`` when the id has no name under ``protocol``, which the caller
+        treats as a row to skip or to raise on.
+    """
+    if protocol not in LABEL_PROTOCOLS:
+        raise ValueError(
+            f"unknown label protocol {protocol!r}; expected one of {LABEL_PROTOCOLS}"
+        )
+    id = int(id)
+
+    if protocol == NEUROMORPHOMETRICS and id < _CORTICAL_ID_FLOOR:
+        return _neuromorphometrics_labels().get(id)
+
+    name = _freesurfer_lut().get(id)
+    if name is not None:
+        return name
+    return _UNLISTED.get(id)
 
 
 def get_details(key, structure):
@@ -52,7 +141,8 @@ def get_details(key, structure):
     return hemi, measure, unit
 
 
-def read_ants_stats(ants_stats_file, ants_brainvols_file, mri_file, force_error=True, collect_missing=False):
+def read_ants_stats(ants_stats_file, ants_brainvols_file, mri_file, force_error=True,
+                    collect_missing=False, label_protocol=FREESURFER):
     """
     Reads in an ANTS stats file along with associated mri_file (for voxel sizes) and converts to a measures dictionary with keys:
     ['structure':XX, 'items': [{'name': 'NVoxels', 'description': 'Number of voxels','value':XX, 'units':'unitless'},
@@ -61,6 +151,9 @@ def read_ants_stats(ants_stats_file, ants_brainvols_file, mri_file, force_error=
     :param ants_brainvols_file: path to ANTS segmentation output for Bvol, Gvol, Wvol, and ThicknessSum (called antsbrainvols"
     :param mri_file: mri file to extract voxel sizes from
     :param freesurfer_lookup_table: Lookup table used to map 1st column of ants_stats_file label numbers to structure names
+    :param label_protocol: which numbering the label ids follow -- "freesurfer"
+        (the default) or "neuromorphometrics". Naming a segmentation with the
+        wrong protocol yields a well-formed file describing the wrong structures.
     :return: measures is a list of dictionaries as defined above
     """
 
@@ -116,12 +209,17 @@ def read_ants_stats(ants_stats_file, ants_brainvols_file, mri_file, force_error=
         for key, val in row[1].items():
             if key == "Label":
                 segid = int(val)
-                structure = get_id_to_struct(segid)
+                structure = get_id_to_struct(segid, protocol=label_protocol)
                 if structure is None:
                     if collect_missing:
-                        print(f"Warning: Label {int(val)} not found in FreeSurferColorLUT.txt - skipping this row", file=sys.stderr)
+                        print(f"Warning: Label {int(val)} has no name under the "
+                              f"{label_protocol!r} label protocol - skipping this row",
+                              file=sys.stderr)
                         break  # Skip entire row for this label
-                    raise ValueError(f"Label ID {int(val):d} did not return any structure in FreeSurferColorLUT.txt")
+                    raise ValueError(
+                        f"Label ID {int(val):d} did not return any structure under the "
+                        f"{label_protocol!r} label protocol"
+                    )
                 continue
             if "VolumeInVoxels" not in key and "Area" not in key:
                 continue

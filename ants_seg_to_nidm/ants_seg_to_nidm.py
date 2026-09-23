@@ -61,7 +61,9 @@ from pathlib import Path
 
 from rdflib import Graph, RDF, URIRef, util, term,Namespace,Literal,BNode,XSD
 from rdflib.plugins.sparql import prepareQuery
-from ants_seg_to_nidm.antsutils import read_ants_stats, create_cde_graph, convert_stats_to_nidm
+from ants_seg_to_nidm.antsutils import (read_ants_stats, create_cde_graph,
+                                       convert_stats_to_nidm, FREESURFER,
+                                       LABEL_PROTOCOLS)
 from io import StringIO
 
 import tempfile
@@ -334,6 +336,14 @@ def main():
     parser.add_argument('--collect-missing', action='store_true', required=False,
                         help='Collect and report all missing labels instead of stopping at the first error. '
                              'Useful for identifying all labels that need to be filtered in wrapper.py.')
+    parser.add_argument('--label-protocol', dest='label_protocol', required=False,
+                        choices=LABEL_PROTOCOLS, default=FREESURFER,
+                        help='Numbering the segmentation label ids follow. "freesurfer" (default) '
+                             'suits a FreeSurfer aseg-numbered segmentation. "neuromorphometrics" '
+                             'suits one numbered by the Neuromorphometrics/BrainCOLOR protocol, as '
+                             'the OASIS-TRT-20 DKT31_CMA atlases are. The two share a numeric range '
+                             'and disagree about what each number means, so naming a segmentation '
+                             'with the wrong one produces a valid file describing wrong structures.')
     args = parser.parse_args()
 
     # test whether user supplied stats file directly and if so they the subject id must also be supplied so we
@@ -414,7 +424,8 @@ def main():
 
     measures = read_ants_stats(labelstats, brainvol, imagefile, 
                                force_error=not args.collect_missing,
-                               collect_missing=args.collect_missing)
+                               collect_missing=args.collect_missing,
+                               label_protocol=args.label_protocol)
     [e,doc] = convert_stats_to_nidm(measures)
     g = create_cde_graph()
 
