@@ -1,5 +1,5 @@
 {
-  "count": 357,
+  "count": 358,
   "ANTSDKT(structure='Brain', hemi=None, measure='PearsonCorrelation', unit=None)": {
     "id": "000001",
     "label": "PearsonCorrelation (None)",
@@ -7,7 +7,7 @@
   },
   "ANTSDKT(structure='BVOL', hemi=None, measure='Volume', unit='mm^3')": {
     "id": "000002",
-    "label": "BVOL (mm^3)",
+    "label": "BVOL: brain volume from the brain extraction mask (mm^3)",
     "isAbout": "http://purl.obolibrary.org/obo/UBERON_0000955",
     "datumType": "http://uri.interlex.org/base/ilx_0738276",
     "hasUnit": "mm^3",
@@ -2947,5 +2947,12 @@
     "datumType": "http://uri.interlex.org/base/ilx_0738276",
     "hasUnit": "mm^2",
     "measureOf": "http://purl.obolibrary.org/obo/PATO_0001323"
+  },
+  "ANTSDKT(structure='LABELVOL', hemi=None, measure='Volume', unit='mm^3')": {
+    "id": "000358",
+    "label": "LABELVOL: sum of the labelled structure volumes, not a brain volume (mm^3)",
+    "datumType": "http://uri.interlex.org/base/ilx_0738276",
+    "hasUnit": "mm^3",
+    "measureOf": "http://uri.interlex.org/base/ilx_0112559"
   }
 }
