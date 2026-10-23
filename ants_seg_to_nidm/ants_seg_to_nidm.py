@@ -35,9 +35,7 @@
 #**************************************************************************************
 
 
-from nidm.core import Constants
-from nidm.experiment.Core import getUUID
-from nidm.experiment.Core import Core
+from ants_seg_to_nidm._pynidm import Constants, NIDM_SUBJECTID_URI, getUUID
 from prov.model import QualifiedName,PROV_ROLE, ProvDocument, PROV_ATTR_USED_ENTITY,PROV_ACTIVITY,PROV_AGENT,PROV_ROLE
 
 from prov.model import Namespace as provNamespace
@@ -136,7 +134,7 @@ def add_seg_data(nidmdoc,subjid,stats_entity_id, add_to_nidm=False, forceagent=F
         # create a new agent for subjid
         participant_agent = niiri[getUUID()]
         nidmdoc.add((participant_agent,RDF.type,Constants.PROV['Agent']))
-        nidmdoc.add((participant_agent,URIRef(Constants.NIDM_SUBJECTID.uri),Literal(subjid, datatype=XSD.string)))
+        nidmdoc.add((participant_agent,URIRef(NIDM_SUBJECTID_URI),Literal(subjid, datatype=XSD.string)))
 
 
     else:
@@ -215,7 +213,7 @@ def add_seg_data(nidmdoc,subjid,stats_entity_id, add_to_nidm=False, forceagent=F
                     print('Explicitly creating agent in existing NIDM file...')
                     participant_agent = niiri[getUUID()]
                     nidmdoc.add((participant_agent,RDF.type,Constants.PROV['Agent']))
-                    nidmdoc.add((participant_agent,URIRef(Constants.NIDM_SUBJECTID.uri),Literal(subjid, datatype=XSD.string)))
+                    nidmdoc.add((participant_agent,URIRef(NIDM_SUBJECTID_URI),Literal(subjid, datatype=XSD.string)))
                 elif (forceagent is False) and (len(qres)==0) and (len(qres2)==0):
                     print('Not explicitly adding agent to NIDM file, no output written')
                     exit()

@@ -358,7 +358,7 @@ def create_cde_graph(restrict_to=None):
     """
     with open(cde_file, "r") as fp:
         ants_cde = json.load(fp)
-    from nidm.core import Constants
+    from ants_seg_to_nidm._pynidm import Constants
 
     ants = Constants.ANTS
     nidm = Constants.NIDM
@@ -414,8 +414,7 @@ def convert_stats_to_nidm(stats):
 
     Returns the entity and the prov document
     """
-    from nidm.core import Constants
-    from nidm.experiment.Core import getUUID
+    from ants_seg_to_nidm._pynidm import Constants, getUUID
     import prov
 
     ants = prov.model.Namespace("ants", str(Constants.ANTS))

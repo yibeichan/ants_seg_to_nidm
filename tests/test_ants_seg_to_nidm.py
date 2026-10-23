@@ -4,7 +4,7 @@ from rdflib import BNode, Graph, URIRef, Literal
 from rdflib.namespace import RDF, XSD
 
 from ants_seg_to_nidm.ants_seg_to_nidm import add_seg_data
-from nidm.core import Constants
+from ants_seg_to_nidm._pynidm import Constants, NIDM_SUBJECTID_URI
 
 
 class _StatEntity:
@@ -22,7 +22,7 @@ def _build_base_graph():
     graph.add(
         (
             participant_agent,
-            URIRef(Constants.NIDM_SUBJECTID.uri),
+            URIRef(NIDM_SUBJECTID_URI),
             Literal(SUBJECT_ID, datatype=XSD.string),
         )
     )
