@@ -49,7 +49,8 @@ setup(
         'pynidm==4.5.0',
         'pandas',
         # prov 3.0.0 moved NetworkX graph interop to an optional extra that
-        # nidm.experiment imports; without it importing this package fails.
+        # PyNIDM 4.x's nidm.experiment imports; the converter also uses
+        # prov.model directly, which PyNIDM 5 no longer pulls in.
         'prov[graph]',
         # Deliberately loose, and it must stay that way: pynidm 4.5.0 declares
         # rdflib~=6.3.2, so pinning rdflib>=7 *here* makes this package's own
